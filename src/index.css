@@ -1,0 +1,33 @@
+/* src/index.css */
+:root {
+  --brand-gold: #FFB81C;
+  --brand-gold-dark: #C98F00;
+  --text-color: #000000;
+  --body-bg: #FFFFFF;
+  --heading-font: 'Open Sans', sans-serif;
+  --body-font: 'Open Sans', sans-serif;
+}
+
+html {
+  font-size: 100%; /* Base: 16px */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--body-bg);
+  font-family: var(--body-font);
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
