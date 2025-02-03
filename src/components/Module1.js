@@ -34,7 +34,7 @@ const Module1 = () => {
           <Typography variant="body1">
             AI uses algorithms and data to understand the world, make decisions, and generate outputs.
             Think of it as a super-smart assistant that uses technology to solve problems, automate tasks,
-            and improve efficiency.
+            and improve efficiency..
           </Typography>
         </Box>
         {/* Embedded YouTube Video */}
