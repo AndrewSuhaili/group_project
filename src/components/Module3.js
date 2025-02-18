@@ -1,37 +1,11 @@
 import React, { useState } from 'react';
-import { Container, Typography, Box, Accordion, AccordionSummary, AccordionDetails, Paper, Grid, Button, Stepper, Step, StepLabel, StepContent, Divider, IconButton } from '@mui/material';
-import ProgressBar from './ProgressBar';
+import { Container, Typography, Box, Paper, Stepper, Step, StepLabel, StepContent, Divider, IconButton } from '@mui/material';
 import FlipCard from './FlipCard';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CaseStudy from './CaseStudy';
 
 const Module3 = () => {
-  const [moduleProgress, setModuleProgress] = useState(30);
   const [expandedSteps, setExpandedSteps] = useState([]);
-
-  const handleExerciseComplete = () => {
-    if (moduleProgress < 100) {
-      setModuleProgress(100);
-    }
-  };
-
-  const promptingExamples = [
-    {
-      title: "Clear Instructions",
-      good: "Analyze this sales report and identify the top 3 performing products in Q3. Present the results in a bulleted list with percentage growth.",
-      bad: "Tell me about the sales report"
-    },
-    {
-      title: "Reference Text",
-      good: "Using the style guide provided in the document below, rewrite this product description to match our brand voice: [paste text]",
-      bad: "Make this sound better"
-    },
-    {
-      title: "Complex Tasks",
-      good: "Break down this market research process into 5 distinct steps. For each step, provide: 1) Time required 2) Required resources 3) Expected output",
-      bad: "Explain market research"
-    }
-  ];
 
   const promptingTechniques = [
     {
@@ -47,7 +21,7 @@ const Module3 = () => {
     {
       title: "3. Give ChatGPT a persona",
       explanation: "Assigning a persona allows ChatGPT to answer from a particular role or perspective. This can help produce responses tailored to specific audiences or scenarios.",
-      example: "You are a senior project manager with 15 years of experience in UAT. Review our current sprint timeline and suggest optimization strategies, focusing on resource allocation and risk mitigation."
+      example: "You are a senior project manager with 15 years of experience in Finance. Review our current sprint timeline and suggest optimization strategies, focusing on resource allocation and risk mitigation."
     },
     {
       title: "4. Add delimiters",
@@ -81,7 +55,6 @@ const Module3 = () => {
         <Typography variant="h4" gutterBottom>
           Module 3: Effective Prompt Engineering
         </Typography>
-        <ProgressBar progress={moduleProgress} label="Module 3 Progress" />
 
         {/* Section 3.1: What is Prompt Engineering */}
         <Box sx={{ marginTop: '20px' }}>

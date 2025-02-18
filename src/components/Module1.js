@@ -1,28 +1,18 @@
 // src/components/Module1.js
 import React, { useContext, useEffect } from 'react';
 import { Container, Typography, Box, Divider } from '@mui/material';
-import { ProgressContext } from '../contexts/ProgressContext';
-import ProgressBar from './ProgressBar';
 import QuizQuestion from './QuizQuestion';
 import FlipCard from './FlipCard';
 import DragAndDropMatch from './DragAndDropMatch';
 import AIToolsAccordion from './AIToolsAccordion';
 
 const Module1 = () => {
-  const { progress, updateProgress } = useContext(ProgressContext);
-
-  useEffect(() => {
-    if (progress.module1 < 50) {
-      updateProgress('module1', 50);
-    }
-  }, [progress, updateProgress]);
 
   return (
     <Container sx={{ py: 3 }}>
       <Typography variant="h4" gutterBottom>
         Module 1: Introduction to AI – THE BASICS
       </Typography>
-      <ProgressBar progress={progress.module1} label="Module 1 Progress" />
 
       {/* Section 1.1: Understanding AI */}
       <Box sx={{ my: 4 }}>
@@ -72,7 +62,7 @@ const Module1 = () => {
         <Box sx={{ my: 4 }}>
           <DragAndDropMatch />
         </Box>
-        {/* Accordion with Detailed Explanations for AI Tools */}
+
         <Box sx={{ my: 4 }}>
           <Typography variant="h5" gutterBottom>
             1.2 Accessing AI Tools
@@ -83,10 +73,6 @@ const Module1 = () => {
           <AIToolsAccordion />
         </Box>
       </Box>
-
-      <Divider sx={{ my: 4 }} />
-
-      {/* Additional sections can go here */}
     </Container>
   );
 };

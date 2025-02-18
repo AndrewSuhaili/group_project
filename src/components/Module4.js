@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { Container, Typography, Box, Grid, Paper, Accordion, AccordionSummary, AccordionDetails, Button, CircularProgress, Alert } from '@mui/material';
-import ProgressBar from './ProgressBar';
 import FlipCard from './FlipCard';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LockIcon from '@mui/icons-material/Lock';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const Module4 = () => {
-  const [moduleProgress] = useState(30); // Initial progress
-
   const riskCards = [
     {
       front: "Data Privacy Breach:",
@@ -34,7 +31,6 @@ const Module4 = () => {
         <Typography variant="h4" gutterBottom>
           Module 4: Responsible AI Use
       </Typography>
-      <ProgressBar progress={moduleProgress} label="Module 4 Progress" />
 
       <Box sx={{ my: 4 }}>
         <Typography variant="h5" gutterBottom>

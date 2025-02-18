@@ -11,7 +11,7 @@ const options = [
   { id: 4, text: 'Copilot', isCorrect: false },
 ];
 
-const ToolSelectionMultiQuestion = ({ onComplete }) => {
+const ToolSelectionMultiQuestion = () => {
   const [selected, setSelected] = useState([]);
   const [revealed, setRevealed] = useState(false);
 
@@ -32,7 +32,6 @@ const ToolSelectionMultiQuestion = ({ onComplete }) => {
     const isCorrect =
       sortedSelected.length === sortedCorrect.length &&
       sortedSelected.every((value, index) => value === sortedCorrect[index]);
-      onComplete();
   };
 
   return (
