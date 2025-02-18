@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
-const CardContainer = styled('div')(({ theme }) => ({
+const CardContainer = styled('div')(({ theme, sx }) => ({
   perspective: 1000,
   width: 220,
   height: 140,
   margin: theme.spacing(1),
   cursor: 'pointer',
+  ...(sx || {})
 }));
 
 const CardInner = styled('div')(({ flipped }) => ({
@@ -38,10 +39,10 @@ const CardBack = styled(CardFace)(({ theme }) => ({
   backgroundColor: theme.palette.primary.light,
 }));
 
-function FlipCard({ frontContent, backContent }) {
+function FlipCard({ frontContent, backContent, sx }) {
   const [flipped, setFlipped] = useState(false);
   return (
-    <CardContainer onClick={() => setFlipped(!flipped)}>
+    <CardContainer onClick={() => setFlipped(!flipped)} sx={sx}>
       <CardInner flipped={flipped}>
         <CardFace elevation={4}>
           <Typography variant="h6">{frontContent}</Typography>
