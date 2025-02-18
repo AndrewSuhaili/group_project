@@ -16,7 +16,7 @@
     "react-scripts": "^5.0.1",
     "web-vitals": "^4.2.4"
   },
-  "homepage": "https://andrewsuhaili.github.io/group_project",
+  "homepage": "https://andrewsuhaili.`github.io/group_project",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -58,5 +58,5 @@
     "eslint-plugin-react": "^7.33.2",
     "gh-pages": "^6.3.0",
     "rimraf": "^5.0.5"
-  },
+  }
 }
