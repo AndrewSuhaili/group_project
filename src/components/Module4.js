@@ -30,7 +30,7 @@ const Module4 = () => {
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      <Container sx={{ py: 2, margin: '20px', maxWidth: '70% !important', padding: '0 2rem' }}>
+      <Container sx={{ py: 2, margin: '20px', maxWidth: '80% !important', padding: '0 2rem' }}>
         <Typography variant="h4" gutterBottom>
           Module 4: Responsible AI Use
       </Typography>
@@ -44,19 +44,22 @@ const Module4 = () => {
           Using AI irresponsibly can pose significant risks
         </Typography>
 
-        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          justifyContent: 'center',
+          gap: 2,
+          width: '100%'
+        }}>
           {riskCards.map((card, index) => (
-            <Box key={index}>
-              <FlipCard
-                frontContent={card.front}
-                backContent={card.back}
-                sx={{
-                  width: 300,
-                  height: 250,
-                  margin: 2
-                }}
-              />
-            </Box>
+            <FlipCard
+              key={index}
+              frontContent={card.front}
+              backContent={card.back}
+              sx={{
+                margin: 1
+              }}
+            />
           ))}
         </Box>
       </Box>
