@@ -5,9 +5,10 @@ import { styled } from '@mui/system';
 
 const CardContainer = styled('div')(({ theme, sx }) => ({
   perspective: 1000,
-  width: 220,
-  height: 140,
-  margin: theme.spacing(1),
+  width: '23%',
+  minWidth: '200px',
+  aspectRatio: '1/1.2',
+  margin: '1%',
   cursor: 'pointer',
   ...(sx || {})
 }));

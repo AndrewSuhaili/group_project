@@ -6,6 +6,15 @@ import FlipCard from './FlipCard';
 import DragAndDropMatch from './DragAndDropMatch';
 import AIToolsAccordion from './AIToolsAccordion';
 
+const aiTerms = [
+  { id: 1, text: 'Generative AI', definition: 'Creates new content based on input data.' },
+  { id: 2, text: 'Natural Language Processing (NLP)', definition: 'Helps computers understand human language.' },
+  { id: 3, text: 'Computer Vision', definition: 'Allows computers to "see" and interpret visual information.' },
+  { id: 4, text: 'Machine Learning', definition: 'Enables systems to learn from data without explicit programming.' },
+  { id: 5, text: 'Deep Learning', definition: 'Uses neural networks with many layers to analyze complex data.' },
+  { id: 6, text: 'Chatbots', definition: 'Programs that simulate conversation with users.' },
+];
+
 const Module1 = () => {
 
   return (
@@ -60,7 +69,7 @@ const Module1 = () => {
         </Box>
         {/* Drag-and-Drop Matching */}
         <Box sx={{ my: 4 }}>
-          <DragAndDropMatch />
+          <DragAndDropMatch terms={aiTerms} />
         </Box>
 
         <Box sx={{ my: 4 }}>

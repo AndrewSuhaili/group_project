@@ -4,12 +4,42 @@ import FlipCard from './FlipCard';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LockIcon from '@mui/icons-material/Lock';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import AISecurityQuiz from './AISecurityQuiz';
+import DragAndDropMatch from './DragAndDropMatch';
+
+const safetyTerms = [
+  {
+    id: 1,
+    text: "Drafting an email response to a client.",
+    definition: "Review tone, accuracy, and formatting before sending."
+  },
+  {
+    id: 2,
+    text: "Translating a company document into another language.",
+    definition: "Verify translation accuracy for context, tone, and regional nuances."
+  },
+  {
+    id: 3,
+    text: "Evaluating an employee's performance using ChatGPT.",
+    definition: "DO NOT DO THIS. Consult your HR Business Partner instead."
+  },
+  {
+    id: 4,
+    text: "Generating a report summary based on proprietary company metrics.",
+    definition: "Replace proprietary data with placeholders or generic examples."
+  },
+  {
+    id: 5,
+    text: "Asking for advice on handling a specific customer complaint about a product.",
+    definition: "Remove identifying details or sensitive product information."
+  }
+];
 
 const Module4 = () => {
   const riskCards = [
     {
       front: "Data Privacy Breach:",
-      back: "Information entered into AI tools could become public, leading to potential violations of data protection regulations and CompanyX policies on safeguarding personal and confidential information."
+      back: "Information entered into AI tools could become public, leading to potential violations of data protection regulations and Stryker policies on safeguarding personal and confidential information."
     },
     {
       front: "Intellectual Property Uncertainties:",
@@ -27,7 +57,7 @@ const Module4 = () => {
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      <Container sx={{ py: 2, margin: '20px', maxWidth: '70% !important', padding: '0 2rem' }}>
+      <Container sx={{ py: 2, margin: '20px', maxWidth: '80% !important', padding: '0 2rem' }}>
         <Typography variant="h4" gutterBottom>
           Module 4: Responsible AI Use
       </Typography>
@@ -40,19 +70,22 @@ const Module4 = () => {
           Using AI irresponsibly can pose significant risks
         </Typography>
 
-        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          justifyContent: 'center',
+          gap: 2,
+          width: '100%'
+        }}>
           {riskCards.map((card, index) => (
-            <Box key={index}>
-              <FlipCard
-                frontContent={card.front}
-                backContent={card.back}
-                sx={{
-                  width: 300,
-                  height: 250,
-                  margin: 2
-                }}
-              />
-            </Box>
+            <FlipCard
+              key={index}
+              frontContent={card.front}
+              backContent={card.back}
+              sx={{
+                margin: 1
+              }}
+            />
           ))}
         </Box>
       </Box>
@@ -61,16 +94,18 @@ const Module4 = () => {
         <Typography variant="h5" gutterBottom>
           4.2 AI Policy Compliance Guide
         </Typography>
-        <PolicySection />
+        <PolicySection setModuleProgress={setModuleProgress} />
       </Box>
     </Container>
     </Box>
   );
 };
 
-const PolicySection = () => {
+const PolicySection = ({ setModuleProgress }) => {
   const [completedSections, setCompletedSections] = useState([]);
   const [expandedPanel, setExpandedPanel] = useState(false);
+  const [quizCompleted, setQuizCompleted] = useState(false);
+  const [knowledgeCheckCompleted, setKnowledgeCheckCompleted] = useState(false);
 
   const principles = [
     {
@@ -199,37 +234,109 @@ const PolicySection = () => {
       icon: "🛡️",
       content: (
         <>
-          <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-            3. Information Bias
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Evaluate outputs for unintentional bias or favoritism toward a specific viewpoint. Make sure the content is balanced and fair.
-          </Typography>
-          <Typography variant="subtitle1" sx={{ mt: 2, fontWeight: 'bold' }}>
-            4. Authenticity and Brand Compliance
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Customize AI outputs to align with CompanyX's standards.
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Public AI recognition tools can identify AI-generated text, so personalization is crucial.
-          </Typography>
-          <Typography variant="body1" paragraph>
-            All content must be brand-compliant, as every employee represents CompanyX.
-          </Typography>
-          <Typography variant="subtitle1" sx={{ mt: 2, fontWeight: 'bold' }}>
-            5. Prohibited Uses
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Do not use AI tools to evaluate an individual's performance or quality.
-            For related concerns or legal considerations, consult your HR Business Partner.
-          </Typography>
-          <Typography variant="subtitle1" sx={{ mt: 2, fontWeight: 'bold' }}>
-            6. Legal and Data Protection
-          </Typography>
-          <Typography variant="body1" paragraph>
-            If using AI software for automated decision-making or processes involving profiling, ensure compliance with data protection regulations. A Data Protection Impact Assessment (DPIA) may be required.
-          </Typography>
+          <Box sx={{}}>
+            <Typography variant="body1" paragraph sx={{ 
+              fontSize: '1.1rem',
+              color: 'primary.main',
+              fontWeight: 500
+            }}>
+              AI tools can be manipulated to produce biased or misleading outputs. Always evaluate content for fairness and accuracy.
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <Paper elevation={0} sx={{ 
+              p: 2.5,
+              backgroundColor: '#fff',
+              border: '1px solid #e0e0e0',
+              borderRadius: 2
+            }}>
+              <Typography variant="subtitle1" sx={{ 
+                fontWeight: 600,
+                color: 'primary.main',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                mb: 2
+              }}>
+                <Box sx={{ 
+                  width: 24,
+                  height: 24,
+                  borderRadius: '50%',
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem'
+                }}>1</Box>
+                Information Bias and Brand Compliance
+              </Typography>
+              <Box sx={{ pl: 4 }}>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1,
+                  mb: 2
+                }}>
+                  Evaluate outputs for unintentional bias or favoritism toward a specific viewpoint. Make sure the content is balanced and fair.
+                </Typography>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1
+                }}>
+                  Customize AI outputs to align with Stryker's standards. All content must be brand-compliant, as every employee represents Stryker.
+                </Typography>
+              </Box>
+            </Paper>
+
+            <Paper elevation={0} sx={{ 
+              p: 2.5,
+              backgroundColor: '#fff',
+              border: '1px solid #e0e0e0',
+              borderRadius: 2
+            }}>
+              <Typography variant="subtitle1" sx={{ 
+                fontWeight: 600,
+                color: 'primary.main',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                mb: 2
+              }}>
+                <Box sx={{ 
+                  width: 24,
+                  height: 24,
+                  borderRadius: '50%',
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem'
+                }}>2</Box>
+                Legal and Data Protection
+              </Typography>
+              <Box sx={{ pl: 4 }}>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1,
+                  mb: 2
+                }}>
+                  Do not use AI tools to evaluate an individual's performance or quality. For related concerns or legal considerations, consult your HR Business Partner.
+                </Typography>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1
+                }}>
+                  If using AI software for automated decision-making or processes involving profiling, ensure compliance with data protection regulations. A Data Protection Impact Assessment (DPIA) may be required.
+                </Typography>
+              </Box>
+            </Paper>
+          </Box>
         </>
       ),
       quiz: {
@@ -245,41 +352,242 @@ const PolicySection = () => {
       id: 2,
       title: "Protect your information.",
       icon: "🔒",
-      content: "Be cautious about sharing personal or confidential information with AI tools.",
+      content: (
+        <>
+          <Box sx={{}}>
+            <Typography variant="body1" paragraph sx={{ 
+              fontSize: '1.1rem',
+              color: 'primary.main',
+              fontWeight: 500
+            }}>
+              Protecting sensitive information is crucial when using AI tools. Be mindful of what you share and follow security protocols.
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <Paper elevation={0} sx={{ 
+              p: 2.5,
+              backgroundColor: '#fff',
+              border: '1px solid #e0e0e0',
+              borderRadius: 2
+            }}>
+              <Typography variant="subtitle1" sx={{ 
+                fontWeight: 600,
+                color: 'primary.main',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                mb: 2
+              }}>
+                <Box sx={{ 
+                  width: 24,
+                  height: 24,
+                  borderRadius: '50%',
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem'
+                }}>1</Box>
+                Confidential Information Protection
+              </Typography>
+              <Box sx={{ pl: 4 }}>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1,
+                  mb: 2
+                }}>
+                  Never input confidential company details like product specifications, financial data, or internal documents into AI tools.
+                </Typography>
+              </Box>
+            </Paper>
+
+            <Paper elevation={0} sx={{ 
+              p: 2.5,
+              backgroundColor: '#fff',
+              border: '1px solid #e0e0e0',
+              borderRadius: 2
+            }}>
+              <Typography variant="subtitle1" sx={{ 
+                fontWeight: 600,
+                color: 'primary.main',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                mb: 2
+              }}>
+                <Box sx={{ 
+                  width: 24,
+                  height: 24,
+                  borderRadius: '50%',
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem'
+                }}>2</Box>
+                Risk Awareness
+              </Typography>
+              <Box sx={{ pl: 4 }}>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1
+                }}>
+                  Sharing such information could result in data breaches or the compromise of intellectual property.
+                </Typography>
+              </Box>
+            </Paper>
+          </Box>
+        </>
+      ),
       quiz: {
         question: "What should you do to protect your information when using AI?",
         options: [
           { id: 'a', text: "Share everything", correct: false },
-          { id: 'b', text: "Only share necessary information", correct: true },
-          { id: 'c', text: "Never share any information", correct: false }
+          { id: 'c', text: "Never share any information", correct: false },
+          { id: 'b', text: "Only share necessary information", correct: true }
         ]
       }
     },
     {
       id: 3,
-      title: "Never input proprietary company information.",
-      icon: "⚠️",
-      content: "Avoid using AI tools to input or generate proprietary company information.",
+      title: "Maintain privacy in AI interactions.",
+      icon: "🔐",
+      content: (
+        <>
+          <Box sx={{}}>
+            <Typography variant="body1" paragraph sx={{ 
+              fontSize: '1.1rem',
+              color: 'primary.main',
+              fontWeight: 500
+            }}>
+              Privacy is crucial when interacting with AI tools. Use privacy-friendly practices and manage settings appropriately.
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <Paper elevation={0} sx={{ 
+              p: 2.5,
+              backgroundColor: '#fff',
+              border: '1px solid #e0e0e0',
+              borderRadius: 2
+            }}>
+              <Typography variant="subtitle1" sx={{ 
+                fontWeight: 600,
+                color: 'primary.main',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                mb: 2
+              }}>
+                <Box sx={{ 
+                  width: 24,
+                  height: 24,
+                  borderRadius: '50%',
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem'
+                }}>1</Box>
+                Privacy-Friendly Practices
+              </Typography>
+              <Box sx={{ pl: 4 }}>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1,
+                  mb: 2
+                }}>
+                  Use generic examples or placeholders when crafting AI prompts to avoid exposing sensitive data.
+                </Typography>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1
+                }}>
+                  Example: Instead of "What should I do if a client from X company raises this issue with our Y product?" use "What should I do if a customer raises a product issue?"
+                </Typography>
+              </Box>
+            </Paper>
+
+            <Paper elevation={0} sx={{ 
+              p: 2.5,
+              backgroundColor: '#fff',
+              border: '1px solid #e0e0e0',
+              borderRadius: 2
+            }}>
+              <Typography variant="subtitle1" sx={{ 
+                fontWeight: 600,
+                color: 'primary.main',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                mb: 2
+              }}>
+                <Box sx={{ 
+                  width: 24,
+                  height: 24,
+                  borderRadius: '50%',
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem'
+                }}>2</Box>
+                Privacy Settings Management
+              </Typography>
+              <Box sx={{ pl: 4 }}>
+                <Typography variant="body1" paragraph sx={{ 
+                  backgroundColor: '#f5f5f5',
+                  p: 2,
+                  borderRadius: 1
+                }}>
+                  Turn off features like "chat history and training" in AI tools to limit data retention and storage.
+                </Typography>
+              </Box>
+            </Paper>
+          </Box>
+        </>
+      ),
       quiz: {
-        question: "Why should you avoid using AI to input proprietary company information?",
+        question: "What's the best practice for maintaining privacy when using AI tools?",
         options: [
-          { id: 'a', text: "AI is always accurate", correct: false },
-          { id: 'b', text: "AI can be used to generate accurate information", correct: false },
-          { id: 'c', text: "AI can be used to generate inaccurate information", correct: true },
-          { id: 'd', text: "AI is too complex", correct: false }
+            { id: 'b', text: "Use generic examples and manage privacy settings", correct: true },
+          { id: 'a', text: "Use specific company and client names", correct: false },
+          { id: 'c', text: "Share all details for better results", correct: false }
         ]
       }
     }
   ];
 
   const handleSectionComplete = (sectionId) => {
+    setModuleProgress(prev => prev + 15);
     setCompletedSections(prev => [...prev, sectionId]);
+  };
+
+  const handleQuizComplete = () => {
+    setModuleProgress(prev => prev + 20);
+    setQuizCompleted(true);
+  };
+
+  const handleKnowledgeCheckComplete = () => {
+    setKnowledgeCheckCompleted(true);
+    setModuleProgress(100);
   };
 
   const isLocked = (sectionId) => {
     if (sectionId === 0) return false;
     return !completedSections.includes(sectionId - 1);
   };
+
+  const allSectionsCompleted = principles.every(p => completedSections.includes(p.id));
 
   return (
     <Box sx={{ mt: 4 }}>
@@ -326,6 +634,119 @@ const PolicySection = () => {
           </AccordionDetails>
         </Accordion>
       ))}
+
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h5" gutterBottom sx={{ color: '#FFB500' }}>
+          Checkpoint Quiz
+        </Typography>
+        
+        {!allSectionsCompleted ? (
+          <Paper 
+            sx={{ 
+              p: 3, 
+              border: '1px solid #e0e0e0', 
+              borderRadius: 2,
+              bgcolor: 'grey.100',
+              opacity: 0.7,
+              position: 'relative'
+            }}
+          >
+            <Box sx={{ 
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              gap: 2,
+              zIndex: 2
+            }}>
+              <LockIcon sx={{ fontSize: 40, color: 'grey.500' }} />
+              <Typography variant="body1" color="grey.600">
+                Complete all sections above to unlock the quiz
+              </Typography>
+            </Box>
+            <Box sx={{ 
+              filter: 'blur(3px)',
+              pointerEvents: 'none',
+              userSelect: 'none'
+            }}>
+              <AISecurityQuiz onComplete={handleQuizComplete} />
+            </Box>
+          </Paper>
+        ) : (
+          <AISecurityQuiz onComplete={handleQuizComplete} />
+        )}
+      </Box>
+
+
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h5" gutterBottom sx={{ color: '#FFB500' }}>
+          Knowledge Check
+        </Typography>
+        <Typography variant="body1" paragraph>
+          Match each AI use case with its appropriate safety precaution.
+        </Typography>
+        {!quizCompleted ? (
+          <Paper 
+            sx={{ 
+              p: 3, 
+              border: '1px solid #e0e0e0', 
+              borderRadius: 2,
+              bgcolor: 'grey.100',
+              opacity: 0.7,
+              position: 'relative'
+            }}
+          >
+            <Box sx={{ 
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              gap: 2,
+              zIndex: 2
+            }}>
+              <LockIcon sx={{ fontSize: 40, color: 'grey.500' }} />
+              <Typography variant="body1" color="grey.600">
+                Complete the Checkpoint Quiz to unlock
+              </Typography>
+            </Box>
+            <Box sx={{ 
+              filter: 'blur(3px)',
+              pointerEvents: 'none',
+              userSelect: 'none'
+            }}>
+              <DragAndDropMatch 
+                terms={safetyTerms} 
+                leftColumnTitle="Use Cases"
+                rightColumnTitle="Safety Precautions"
+                onComplete={handleKnowledgeCheckComplete}
+              />
+            </Box>
+          </Paper>
+        ) : (
+          <DragAndDropMatch 
+            terms={safetyTerms} 
+            leftColumnTitle="Use Cases"
+            rightColumnTitle="Safety Precautions"
+            onComplete={handleKnowledgeCheckComplete}
+          />
+        )}
+
+        {quizCompleted && knowledgeCheckCompleted && (
+        <Alert severity="success" sx={{ mt: 4 }}>
+          Congratulations! You've completed the AI Policy Compliance Guide.
+        </Alert>
+      )}
+      </Box>
     </Box>
   );
 };

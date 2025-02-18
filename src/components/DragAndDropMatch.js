@@ -8,15 +8,6 @@ const ItemTypes = {
   TERM: 'term',
 };
 
-const terms = [
-  { id: 1, text: 'Generative AI', definition: 'Creates new content based on input data.' },
-  { id: 2, text: 'Natural Language Processing (NLP)', definition: 'Helps computers understand human language.' },
-  { id: 3, text: 'Computer Vision', definition: 'Allows computers to “see” and interpret visual information.' },
-  { id: 4, text: 'Machine Learning', definition: 'Enables systems to learn from data without explicit programming.' },
-  { id: 5, text: 'Deep Learning', definition: 'Uses neural networks with many layers to analyze complex data.' },
-  { id: 6, text: 'Chatbots', definition: 'Programs that simulate conversation with users.' },
-];
-
 const DraggableTerm = ({ term }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.TERM,
@@ -93,11 +84,16 @@ const DropBox = ({ term, onMatch, onWrongDrop }) => {
   );
 };
 
-const DragAndDropMatch = () => {
+const DragAndDropMatch = ({ terms, leftColumnTitle = "Key Terms", rightColumnTitle = "Definitions", onComplete }) => {
   const [matches, setMatches] = useState({});
 
   const handleMatch = (id) => {
     setMatches((prev) => ({ ...prev, [id]: true }));
+
+    if (matches.length === terms.length) {
+      console.log("All terms matched");
+      onComplete();
+    }
   };
 
   const handleWrongDrop = () => {
@@ -115,12 +111,12 @@ const DragAndDropMatch = () => {
     <DndProvider backend={HTML5Backend}>
       <Box sx={{ mt: 2 }}>
         <Typography variant="h6" align="center" gutterBottom>
-          Match the Key Terms with Their Definitions
+          Match the {leftColumnTitle} with Their {rightColumnTitle}
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
             <Typography variant="subtitle1" align="center">
-              Key Terms
+              {leftColumnTitle}
             </Typography>
             {availableTerms.map((term) => (
               <DraggableTerm key={term.id} term={term} />
@@ -128,7 +124,7 @@ const DragAndDropMatch = () => {
           </Grid>
           <Grid item xs={12} md={8}>
             <Typography variant="subtitle1" align="center">
-              Definitions
+              {rightColumnTitle}
             </Typography>
             <Grid container>
               {termsWithStatus.map((term) => (
