@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Typography, Box, Tabs, Tab, Paper } from '@mui/material';
-import { ProgressContext } from '../contexts/ProgressContext';
 import ProgressBar from './ProgressBar';
 import FlipCard from './FlipCard';
 import ToolSelectionMultiQuestion from './ToolSelectionMultiQuestion';
@@ -8,36 +7,25 @@ import ToolComparisonDetails from './ToolComparisonDetails';
 import DragAndDropOrder from './DragAndDropOrder';
 
 const Module2 = () => {
-  const { progress, updateProgress } = useContext(ProgressContext);
-  const moduleKey = 'module2';
+  const [progress, setProgress] = useState(30);
   const [tabIndex, setTabIndex] = useState(0);
-
-  // Set initial progress to 30 if not already set.
-  useEffect(() => {
-    if (progress[moduleKey] < 30) {
-      updateProgress(moduleKey, 30);
-    }
-  }, [progress, updateProgress]);
 
   const handleTabChange = (e, newValue) => {
     setTabIndex(newValue);
-    // When switching tool tabs, update progress to 90 if not already.
-    if (progress[moduleKey] < 90) {
-      updateProgress(moduleKey, 90);
+    if (progress < 90) {
+      setProgress(90);
     }
   };
 
-  // Callback when the multi-select question is answered correctly.
   const handleQuestionComplete = () => {
-    if (progress[moduleKey] < 50) {
-      updateProgress(moduleKey, 50);
+    if (progress < 50) {
+      setProgress(50);
     }
   };
 
-  // Callback when the ordering exercise is completed correctly.
   const handleOrderComplete = () => {
-    if (progress[moduleKey] < 100) {
-      updateProgress(moduleKey, 100);
+    if (progress < 100) {
+      setProgress(100);
     }
   };
 
@@ -82,7 +70,7 @@ const Module2 = () => {
       <Typography variant="h4" gutterBottom>
         Module 2: Chatbots and Assistants
       </Typography>
-      <ProgressBar progress={progress[moduleKey]} label="Module 2 Progress" />
+      <ProgressBar progress={progress} label="Module 2 Progress" />
 
       {/* Section 2.1: Chatbots and Assistants (Visual Only) */}
       <Box sx={{ my: 4 }}>
