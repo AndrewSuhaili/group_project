@@ -77,29 +77,44 @@ const Module3 = () => {
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      <Container sx={{ py: 2, margin: '20px', maxWidth: '100% !important', padding: '0 2rem' }}>
+      <Container sx={{ py: 2, margin: '20px', maxWidth: '70% !important', padding: '0 2rem' }}>
         <Typography variant="h4" gutterBottom>
           Module 3: Effective Prompt Engineering
         </Typography>
         <ProgressBar progress={moduleProgress} label="Module 3 Progress" />
 
         {/* Section 3.1: What is Prompt Engineering */}
-        <Box sx={{ }}>
+        <Box sx={{ marginTop: '20px' }}>
           <Typography variant="h5" gutterBottom>
             3.1 What is prompt engineering?
           </Typography>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
             <FlipCard 
               frontContent="What is a prompt?" 
               backContent="A prompt for a Large Language Model (LLM) is an input that initiates a conversation or triggers a response from the model."
+              sx={{
+                width: 280,
+                height: 180,
+                margin: 2
+              }}
             />
             <FlipCard
               frontContent="What is prompt engineering?"
               backContent="Prompt engineering is the process of crafting prompts to optimize the output of a Large Language Model (LLM)."
+              sx={{
+                width: 280,
+                height: 180,
+                margin: 2
+              }}
             />
             <FlipCard
               frontContent="Key Considerations"
               backContent="Clarity, context, and structure determine output quality"
+              sx={{
+                width: 280,
+                height: 180,
+                margin: 2
+              }}
             />
           </Box>
         </Box>

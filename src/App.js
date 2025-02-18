@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage';
 import Module1 from './components/Module1';
 import Module2 from './components/Module2';
 import Module3 from './components/Module3';
+import Module4 from './components/Module4';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -16,7 +17,7 @@ function App() {
         <Route path="/module1" element={<Module1 />} />
         <Route path="/module2" element={<Module2 />} />
         <Route path="/module3" element={<Module3 />} />
-        <Route path="/module4" element={<div style={{ padding: '2rem' }}>Module 4 coming soon!</div>} />
+        <Route path="/module4" element={<Module4 />} />
       </Routes>
       <Footer />
     </Router>
