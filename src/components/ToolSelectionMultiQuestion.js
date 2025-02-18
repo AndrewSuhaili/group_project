@@ -32,9 +32,7 @@ const ToolSelectionMultiQuestion = ({ onComplete }) => {
     const isCorrect =
       sortedSelected.length === sortedCorrect.length &&
       sortedSelected.every((value, index) => value === sortedCorrect[index]);
-    if (isCorrect && onComplete) {
       onComplete();
-    }
   };
 
   return (
