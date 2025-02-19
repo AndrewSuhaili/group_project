@@ -7,26 +7,10 @@ import ToolComparisonDetails from './ToolComparisonDetails';
 import DragAndDropOrder from './DragAndDropOrder';
 
 const Module2 = () => {
-  const [progress, setProgress] = useState(30);
   const [tabIndex, setTabIndex] = useState(0);
 
   const handleTabChange = (e, newValue) => {
     setTabIndex(newValue);
-    if (progress < 90) {
-      setProgress(90);
-    }
-  };
-
-  const handleQuestionComplete = () => {
-    if (progress < 50) {
-      setProgress(50);
-    }
-  };
-
-  const handleOrderComplete = () => {
-    if (progress < 100) {
-      setProgress(100);
-    }
   };
 
   // Expanded data for AI tools comparison (section 2.3)
@@ -70,7 +54,6 @@ const Module2 = () => {
       <Typography variant="h4" gutterBottom>
         Module 2: Chatbots and Assistants
       </Typography>
-      <ProgressBar progress={progress} label="Module 2 Progress" />
 
       {/* Section 2.1: Chatbots and Assistants (Visual Only) */}
       <Box sx={{ my: 4 }}>
@@ -98,7 +81,7 @@ const Module2 = () => {
 
       {/* Section: Interactive Multi-Select Question */}
       <Box sx={{ my: 4 }}>
-        <ToolSelectionMultiQuestion onComplete={handleQuestionComplete} />
+        <ToolSelectionMultiQuestion />
       </Box>
 
       {/* Section 2.3: Comparing AI Tools (Expanded Interactive Section) */}
@@ -124,7 +107,7 @@ const Module2 = () => {
         <Typography variant="h5" gutterBottom>
           2.4 Arrange the AI Workflow
         </Typography>
-        <DragAndDropOrder onComplete={handleOrderComplete} />
+        <DragAndDropOrder />
       </Box>
     </Container>
   );

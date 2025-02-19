@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Typography, Box, Paper, Accordion, AccordionSummary, AccordionDetails, Button, Alert } from '@mui/material';
-import ProgressBar from './ProgressBar';
+import { Container, Typography, Box, Grid, Paper, Accordion, AccordionSummary, AccordionDetails, Button, CircularProgress, Alert } from '@mui/material';
 import FlipCard from './FlipCard';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LockIcon from '@mui/icons-material/Lock';
@@ -37,7 +36,6 @@ const safetyTerms = [
 ];
 
 const Module4 = () => {
-  const [moduleProgress, setModuleProgress] = useState(0);
   const riskCards = [
     {
       front: "Data Privacy Breach:",
@@ -63,15 +61,6 @@ const Module4 = () => {
         <Typography variant="h4" gutterBottom>
           Module 4: Responsible AI Use
       </Typography>
-        <Box sx={{ 
-          position: 'sticky',
-          top: 0,
-          backgroundColor: 'white',
-          zIndex: 1000,
-          paddingY: 2
-        }}>
-          <ProgressBar progress={moduleProgress} label="Module 4 Progress" />
-        </Box>
 
       <Box sx={{ my: 4 }}>
         <Typography variant="h5" gutterBottom>
@@ -105,14 +94,14 @@ const Module4 = () => {
         <Typography variant="h5" gutterBottom>
           4.2 AI Policy Compliance Guide
         </Typography>
-        <PolicySection setModuleProgress={setModuleProgress} />
+        <PolicySection />
       </Box>
     </Container>
     </Box>
   );
 };
 
-const PolicySection = ({ setModuleProgress }) => {
+const PolicySection = () => {
   const [completedSections, setCompletedSections] = useState([]);
   const [expandedPanel, setExpandedPanel] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
@@ -579,18 +568,15 @@ const PolicySection = ({ setModuleProgress }) => {
   ];
 
   const handleSectionComplete = (sectionId) => {
-    setModuleProgress(prev => prev + 15);
     setCompletedSections(prev => [...prev, sectionId]);
   };
 
   const handleQuizComplete = () => {
-    setModuleProgress(prev => prev + 20);
     setQuizCompleted(true);
   };
 
   const handleKnowledgeCheckComplete = () => {
     setKnowledgeCheckCompleted(true);
-    setModuleProgress(100);
   };
 
   const isLocked = (sectionId) => {
@@ -599,6 +585,29 @@ const PolicySection = ({ setModuleProgress }) => {
   };
 
   const allSectionsCompleted = principles.every(p => completedSections.includes(p.id));
+
+  const questions = [
+    {
+      id: 'A',
+      text: 'General industry best practices.',
+      correct: false
+    },
+    {
+      id: 'B',
+      text: "A client's private financial details.",
+      correct: true
+    },
+    {
+      id: 'C',
+      text: 'Internal product development plans.',
+      correct: true
+    },
+    {
+      id: 'D',
+      text: 'Publicly available company policies.',
+      correct: false
+    }
+  ];
 
   return (
     <Box sx={{ mt: 4 }}>
@@ -685,11 +694,23 @@ const PolicySection = ({ setModuleProgress }) => {
               pointerEvents: 'none',
               userSelect: 'none'
             }}>
-              <AISecurityQuiz onComplete={handleQuizComplete} />
+              <AISecurityQuiz 
+                title="Which of the following are not acceptable data entries into AI tools like ChatGPT?"
+                questions={questions}
+                successMessage="Correct! Private client information and internal development plans should never be shared with AI tools."
+                errorMessage="Incorrect. Remember that sensitive business information and client data must be protected."
+                onComplete={handleQuizComplete} 
+              />
             </Box>
           </Paper>
         ) : (
-          <AISecurityQuiz onComplete={handleQuizComplete} />
+          <AISecurityQuiz 
+            title="Which of the following are not acceptable data entries into AI tools like ChatGPT?"
+            questions={questions}
+            successMessage="Correct! Private client information and internal development plans should never be shared with AI tools."
+            errorMessage="Incorrect. Remember that sensitive business information and client data must be protected."
+            onComplete={handleQuizComplete}
+          />
         )}
       </Box>
 

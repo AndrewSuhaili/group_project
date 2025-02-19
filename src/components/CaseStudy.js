@@ -48,7 +48,7 @@ const CaseStudy = () => {
         <Card variant="outlined" sx={{ color: 'primary.contrastText', mb: 2, width: '70%' }}>
           <CardContent>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom sx={{ fontSize: '1.1rem' }}>
                 Excel Macro Development Task
               </Typography>
               <Button 
@@ -59,7 +59,7 @@ const CaseStudy = () => {
                 {expandedSteps.includes(0) ? 'Collapse' : 'Expand'} Scenario
               </Button>
             </Box>
-            <Typography variant="body1">
+            <Typography variant="body1" sx={{ fontSize: '0.9rem' }}>
               A user who has never written an Excel macro before needs help creating one that will:
             </Typography>
             <Stack spacing={1} sx={{ mt: 2, alignItems: 'flex-start' }}>
@@ -74,7 +74,10 @@ const CaseStudy = () => {
                   label={requirement}
                   icon={<CheckCircleIcon />}
                   sx={{ 
-                    '& .MuiChip-label': { color: '#FFB500' },
+                    '& .MuiChip-label': { 
+                      color: '#FFB500',
+                      fontSize: '0.85rem'
+                    },
                     '& .MuiChip-icon': { color: '#FFB500' }
                   }}
                 />
@@ -87,7 +90,7 @@ const CaseStudy = () => {
     {
       label: 'Prompt Comparison',
       content: (
-        <Box sx={{ width: '70%' }}>
+        <Box sx={{ width: '80%' }}>
           <Collapse in={showComparison}>
             <Stack spacing={2}>
               <Alert 
@@ -97,19 +100,22 @@ const CaseStudy = () => {
                   '& .MuiAlert-message': { width: '100%' }
                 }}
               >
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h6" gutterBottom sx={{ fontSize: '1.1rem' }}>
                   Bad Prompt
                 </Typography>
                 <Card variant="outlined" sx={{ bgcolor: '#ffebee', mt: 1 }}>
                   <CardContent>
-                    <Typography variant="body1" component="pre" sx={{ fontFamily: 'monospace' }}>
+                    <Typography variant="body1" component="pre" sx={{ 
+                      fontFamily: 'monospace',
+                      fontSize: '0.85rem'
+                    }}>
                       "Write a macro to copy completed rows to another sheet."
                     </Typography>
                   </CardContent>
                 </Card>
                 <Fade in={true} timeout={1000}>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="subtitle2" color="error">
+                    <Typography variant="subtitle2" color="error" sx={{ fontSize: '0.9rem' }}>
                       Why it's ineffective:
                     </Typography>
                     <Stack spacing={1} sx={{ mt: 1 }}>
@@ -135,26 +141,28 @@ const CaseStudy = () => {
                   '& .MuiAlert-message': { width: '100%' }
                 }}
               >
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h6" gutterBottom sx={{ fontSize: '1.1rem' }}>
                   Good Prompt
                 </Typography>
                 <Card variant="outlined" sx={{ bgcolor: '#f1f8e9', mt: 1 }}>
                   <CardContent>
-                    <Typography variant="body1" component="pre" sx={{ fontFamily: 'monospace' }}>
+                    <Typography variant="body1" component="pre" sx={{ 
+                      fontFamily: 'monospace',
+                      fontSize: '0.85rem'
+                    }}>
                       {`I need an Excel VBA macro that:
-
-                        1. Copies rows from 'Sheet1' to 'Sheet2'
-                        2. Only if Column A contains "Complete"
-                        3. Data starts from row 2 (headers in row 1)
-                        4. Preserve formatting
-                        5. Run when button clicked
-                        6. Add clear comments`}
+1. Copies rows from 'Sheet1' to 'Sheet2'
+2. Only if Column A contains "Complete"
+3. Data starts from row 2 (headers in row 1)
+4. Preserve formatting
+5. Run when button clicked
+6. Add clear comments`}
                     </Typography>
                   </CardContent>
                 </Card>
                 <Fade in={true} timeout={1000}>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="subtitle2" color="success.main">
+                    <Typography variant="subtitle2" color="success.main" sx={{ fontSize: '0.9rem' }}>
                       Why it works:
                     </Typography>
                     <Stack spacing={1} sx={{ mt: 1 }}>
@@ -189,7 +197,9 @@ const CaseStudy = () => {
               onClick={() => handleStepClick(index)}
               sx={{ cursor: 'pointer' }}
             >
-              <Typography variant="h6">{step.label}</Typography>
+              <Typography variant="h6" sx={{ fontSize: '1.1rem' }}>
+                {step.label}
+              </Typography>
             </StepLabel>
             {expandedSteps.includes(index) && (
               <StepContent>
