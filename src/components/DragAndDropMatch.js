@@ -33,17 +33,22 @@ const DraggableTerm = ({ term }) => {
 
 const DropBox = ({ term, onMatch, onWrongDrop }) => {
   const [status, setStatus] = useState("default");
+  const [isMatched, setIsMatched] = useState(false);
 
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
     accept: ItemTypes.TERM,
     drop: (item) => {
+      if (isMatched) {
+        return;
+      }
+      
       if (item.id === term.id) {
         setStatus("correct");
+        setIsMatched(true);
         onMatch(term.id);
       } else {
         setStatus("wrong");
         if (onWrongDrop) onWrongDrop();
-        // After 0.5 seconds, revert the status to default
         setTimeout(() => {
           setStatus("default");
         }, 500);
@@ -51,20 +56,20 @@ const DropBox = ({ term, onMatch, onWrongDrop }) => {
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
+      canDrop: monitor.canDrop() && !isMatched,
     }),
   }));
 
-  // Set up the base style for the drop zone
   let style = {
     p: 2,
     m: 1,
     minHeight: 80,
     border: '1px dashed #ccc',
     transition: 'all 0.3s',
+    pointerEvents: isMatched ? 'none' : 'auto',
   };
 
-  if (status === "correct") {
+  if (status === "correct" || isMatched) {
     style = { ...style, backgroundColor: "success.light", border: '2px solid green' };
   } else if (status === "wrong") {
     style = { ...style, backgroundColor: "error.light", border: '2px solid red', animation: 'shake 0.5s' };
@@ -75,7 +80,7 @@ const DropBox = ({ term, onMatch, onWrongDrop }) => {
   return (
     <Paper ref={drop} sx={style} elevation={3}>
       <Typography variant="body2">{term.definition}</Typography>
-      {status === "correct" && (
+      {(status === "correct" || isMatched) && (
         <Typography variant="subtitle2" sx={{ mt: 1, fontWeight: 'bold' }}>
           {term.text}
         </Typography>

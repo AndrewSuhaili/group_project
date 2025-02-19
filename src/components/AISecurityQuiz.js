@@ -9,32 +9,15 @@ import {
   Alert 
 } from '@mui/material';
 
-const AISecurityQuiz = ({ onComplete }) => {
+const AISecurityQuiz = ({ 
+  onComplete, 
+  title, 
+  questions,
+  successMessage,
+  errorMessage 
+}) => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [showResult, setShowResult] = useState(false);
-
-  const questions = [
-    {
-      id: 'A',
-      text: 'General industry best practices.',
-      correct: false
-    },
-    {
-      id: 'B',
-      text: "A client's private financial details.",
-      correct: true
-    },
-    {
-      id: 'C',
-      text: 'Internal product development plans.',
-      correct: true
-    },
-    {
-      id: 'D',
-      text: 'Publicly available company policies.',
-      correct: false
-    }
-  ];
 
   const handleChange = (event) => {
     const answer = event.target.value;
@@ -67,7 +50,7 @@ const AISecurityQuiz = ({ onComplete }) => {
         Checkpoint Quiz
       </Typography>
       <Typography variant="subtitle1" gutterBottom sx={{ mb: 3 }}>
-        Which of the following are not acceptable data entries into AI tools like ChatGPT?
+        {title}
       </Typography>
       <Typography variant="subtitle2" gutterBottom sx={{ mb: 3 }}>
         Select all that apply.
@@ -104,16 +87,15 @@ const AISecurityQuiz = ({ onComplete }) => {
 
       {showResult && (
         <Box sx={{ mt: 2 }}>
-          {selectedAnswers.length === 2 && 
-           selectedAnswers.includes('B') && 
-           selectedAnswers.includes('C') ? (
+          {selectedAnswers.length === questions.filter(q => q.correct).length && 
+           selectedAnswers.every(a => questions.find(q => q.id === a)?.correct) ? (
             <Alert severity="success">
-              Correct! Private client information and internal development plans should never be shared with AI tools.
+              {successMessage || "Correct!"}
             </Alert>
           ) : (
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
               <Alert severity="error" sx={{ flex: 1 }}>
-                Incorrect. Remember that sensitive business information and client data must be protected.
+                {errorMessage || "Incorrect. Please try again."}
               </Alert>
               <Button
                 variant="contained"

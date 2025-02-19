@@ -1,37 +1,17 @@
 import React, { useState } from 'react';
-import { Container, Typography, Box, Accordion, AccordionSummary, AccordionDetails, Paper, Grid, Button, Stepper, Step, StepLabel, StepContent, Divider, IconButton } from '@mui/material';
-import ProgressBar from './ProgressBar';
+import { Container, Typography, Box, Paper, Stepper, Step, StepLabel, StepContent, Divider, IconButton } from '@mui/material';
 import FlipCard from './FlipCard';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CaseStudy from './CaseStudy';
+import QuizQuestion from './QuizQuestion';
+import AISecurityQuiz from './AISecurityQuiz';
+import LockIcon from '@mui/icons-material/Lock';
 
 const Module3 = () => {
-  const [moduleProgress, setModuleProgress] = useState(30);
   const [expandedSteps, setExpandedSteps] = useState([]);
-
-  const handleExerciseComplete = () => {
-    if (moduleProgress < 100) {
-      setModuleProgress(100);
-    }
-  };
-
-  const promptingExamples = [
-    {
-      title: "Clear Instructions",
-      good: "Analyze this sales report and identify the top 3 performing products in Q3. Present the results in a bulleted list with percentage growth.",
-      bad: "Tell me about the sales report"
-    },
-    {
-      title: "Reference Text",
-      good: "Using the style guide provided in the document below, rewrite this product description to match our brand voice: [paste text]",
-      bad: "Make this sound better"
-    },
-    {
-      title: "Complex Tasks",
-      good: "Break down this market research process into 5 distinct steps. For each step, provide: 1) Time required 2) Required resources 3) Expected output",
-      bad: "Explain market research"
-    }
-  ];
+  const [knowledgeCheckCompleted, setKnowledgeCheckCompleted] = useState(false);
+  const [expandedBusinessCases, setExpandedBusinessCases] = useState([]);
+  const [expandedTextGenCases, setExpandedTextGenCases] = useState([]);
 
   const promptingTechniques = [
     {
@@ -47,7 +27,7 @@ const Module3 = () => {
     {
       title: "3. Give ChatGPT a persona",
       explanation: "Assigning a persona allows ChatGPT to answer from a particular role or perspective. This can help produce responses tailored to specific audiences or scenarios.",
-      example: "You are a senior project manager with 15 years of experience in UAT. Review our current sprint timeline and suggest optimization strategies, focusing on resource allocation and risk mitigation."
+      example: "You are a senior project manager with 15 years of experience in Finance. Review our current sprint timeline and suggest optimization strategies, focusing on resource allocation and risk mitigation."
     },
     {
       title: "4. Add delimiters",
@@ -75,13 +55,82 @@ const Module3 = () => {
     });
   };
 
+  const handleKnowledgeCheckComplete = () => {
+    setKnowledgeCheckCompleted(true);
+  };
+
+  const handleBusinessCaseClick = (index) => {
+    setExpandedBusinessCases(prev => 
+      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
+    );
+  };
+
+  const handleTextGenCaseClick = (index) => {
+    setExpandedTextGenCases(prev => 
+      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
+    );
+  };
+
+  const questions = [
+    {
+      id: 'A',
+      text: 'By making the task clearer for the AI to interpret',
+      correct: true
+    },
+    {
+      id: 'B',
+      text: 'By providing additional data for analysis',
+      correct: false
+    },
+    {
+      id: 'C',
+      text: 'By summarising the output into a concise report',
+      correct: false
+    },
+    {
+      id: 'D',
+      text: 'By automating follow-up tasks',
+      correct: false
+    }
+  ];
+
+  const businessCases = [
+    {
+      title: "Product Marketing Trend Analysis",
+      scenario: "A product marketer uses AI to identify emerging trends by analysing customer feedback data.",
+      prompt: "Analyse this customer feedback data and identify three emerging trends: [insert feedback]"
+    },
+    {
+      title: "Academic Research Support",
+      scenario: "An analyst leverages AI to find supporting evidence for a presentation by scanning academic journals.",
+      prompt: "Search for academic articles supporting this hypothesis and summarise key findings: [insert hypothesis]"
+    },
+    {
+      title: "Executive Report Summarisation",
+      scenario: "A member of the leadership team uses AI to summarise a lengthy report into a concise briefing for stakeholders.",
+      prompt: "Summarise this 50-page report into a one-page executive briefing: [insert report]"
+    }
+  ];
+
+  const textGenerationCases = [
+    {
+      title: "Region-Specific Content Adaptation",
+      scenario: "A marketing intern uses AI to rewrite website product pages to meet region-specific regulatory and guidelines and local concerns.",
+      prompt: "Rewrite this website content, removing all claims in line with Australian regulatory guidelines: [insert text]"
+    },
+    {
+      title: "Internal Communications",
+      scenario: "An internal communications intern uses AI to draft a Hub post promoting uptake of a new intern led \"AI in your workplace\" learning resource.",
+      prompt: "Write an internal story highlight a new employee AI training program and note the following details [insert details/content]. Use a professional and polished tone"
+    }
+  ];
+
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <Container sx={{ py: 2, margin: '20px', maxWidth: '70% !important', padding: '0 2rem' }}>
         <Typography variant="h4" gutterBottom>
           Module 3: Effective Prompt Engineering
         </Typography>
-        <ProgressBar progress={moduleProgress} label="Module 3 Progress" />
 
         {/* Section 3.1: What is Prompt Engineering */}
         <Box sx={{ marginTop: '20px' }}>
@@ -189,6 +238,272 @@ const Module3 = () => {
             3.3 Practical Case Study
           </Typography>
           <CaseStudy />
+        </Box>
+
+        <Box sx={{ my: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            3.3 Business Use Cases: Summarisation and Research
+          </Typography>
+          <Typography variant="body1" paragraph>
+            AI can streamline the process of gathering, summarising, and synthesising information. 
+            AI can locate relevant resources quickly and extract key insights from large individual 
+            sources of data or a wide range of sources.
+          </Typography>
+          
+          <Stepper orientation="vertical" nonLinear>
+            {businessCases.map((useCase, index) => (
+              <Step key={index} active={expandedBusinessCases.includes(index)}>
+                <StepLabel
+                  onClick={() => handleBusinessCaseClick(index)}
+                  sx={{ cursor: 'pointer' }}
+                  StepIconComponent={() => (
+                    <IconButton
+                      size="small"
+                      sx={{
+                        transform: expandedBusinessCases.includes(index) ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.3s'
+                      }}
+                    >
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  )}
+                >
+                  <Typography variant="h6">{useCase.title}</Typography>
+                </StepLabel>
+                {expandedBusinessCases.includes(index) && (
+                  <StepContent TransitionProps={{ unmountOnExit: true }}>
+                    <Box sx={{ my: 2 }}>
+                      <Typography variant="body1" paragraph>
+                        {useCase.scenario}
+                      </Typography>
+                      <Paper 
+                        elevation={2} 
+                        sx={{ 
+                          p: 2, 
+                          bgcolor: 'grey.50',
+                          borderLeft: 4,
+                          borderColor: 'primary.main'
+                        }}
+                      >
+                        <Typography variant="subtitle2" gutterBottom color="primary">
+                          Example Prompt:
+                        </Typography>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            whiteSpace: 'pre-wrap', 
+                            fontFamily: 'monospace',
+                            color: 'text.secondary',
+                            fontSize: '1rem'
+                          }}
+                        >
+                          {useCase.prompt}
+                        </Typography>
+                      </Paper>
+                    </Box>
+                    <Divider sx={{ my: 2 }} />
+                  </StepContent>
+                )}
+              </Step>
+            ))}
+          </Stepper>
+        </Box>
+
+        <Box sx={{ mt: 4 }}>          
+          <AISecurityQuiz 
+            title="How does AI enhance the research process?"
+            questions={[
+              {
+                id: 'A',
+                text: 'By generating reports tailored to specific stakeholders',
+                correct: false
+              },
+              {
+                id: 'B',
+                text: 'By automating the creation of promotional emails',
+                correct: false
+              },
+              {
+                id: 'C',
+                text: 'By summarising large volumes of information, from length or disparate sources, efficiently',
+                correct: true
+              },
+              {
+                id: 'D',
+                text: 'By visualising customer trends in charts',
+                correct: false
+              }
+            ]}
+            successMessage="Correct! AI excels at processing and summarizing large amounts of information quickly and efficiently."
+            errorMessage="Incorrect. Think about AI's ability to process and analyze large volumes of data."
+            onComplete={handleKnowledgeCheckComplete}
+          />
+        </Box>
+
+        <Box sx={{ my: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            3.4 Text Generation
+          </Typography>
+          <Typography variant="body1" paragraph>
+            AI can generate text for written or verbal communications such as emails, reports, 
+            speeches or presentations. It can tailor the tone and style to suit the audience 
+            or purpose, saving time and ensuring the correct consistency, punctuation and spelling.
+          </Typography>
+          
+          <Stepper orientation="vertical" nonLinear>
+            {textGenerationCases.map((useCase, index) => (
+              <Step key={index} active={expandedTextGenCases.includes(index)}>
+                <StepLabel
+                  onClick={() => handleTextGenCaseClick(index)}
+                  sx={{ cursor: 'pointer' }}
+                  StepIconComponent={() => (
+                    <IconButton
+                      size="small"
+                      sx={{
+                        transform: expandedTextGenCases.includes(index) ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.3s'
+                      }}
+                    >
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  )}
+                >
+                  <Typography variant="h6">{useCase.title}</Typography>
+                </StepLabel>
+                {expandedTextGenCases.includes(index) && (
+                  <StepContent TransitionProps={{ unmountOnExit: true }}>
+                    <Box sx={{ my: 2 }}>
+                      <Typography variant="body1" paragraph>
+                        {useCase.scenario}
+                      </Typography>
+                      <Paper 
+                        elevation={2} 
+                        sx={{ 
+                          p: 2, 
+                          bgcolor: 'grey.50',
+                          borderLeft: 4,
+                          borderColor: 'primary.main'
+                        }}
+                      >
+                        <Typography variant="subtitle2" gutterBottom color="primary">
+                          Example Prompt:
+                        </Typography>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            whiteSpace: 'pre-wrap', 
+                            fontFamily: 'monospace',
+                            color: 'text.secondary',
+                            fontSize: '1rem'
+                          }}
+                        >
+                          {useCase.prompt}
+                        </Typography>
+                      </Paper>
+                    </Box>
+                    <Divider sx={{ my: 2 }} />
+                  </StepContent>
+                )}
+              </Step>
+            ))}
+          </Stepper>
+        </Box>
+
+        <Box sx={{ mt: 4 }}>
+          {!knowledgeCheckCompleted ? (
+            <Paper 
+              sx={{ 
+                p: 3, 
+                border: '1px solid #e0e0e0', 
+                borderRadius: 2,
+                bgcolor: 'grey.100',
+                opacity: 0.7,
+                position: 'relative'
+              }}
+            >
+              <Box sx={{ 
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: 2,
+                zIndex: 2
+              }}>
+                <LockIcon sx={{ fontSize: 40, color: 'grey.500' }} />
+                <Typography variant="body1" color="grey.600">
+                  Complete the previous quiz to unlock
+                </Typography>
+              </Box>
+              <Box sx={{ 
+                filter: 'blur(3px)',
+                pointerEvents: 'none',
+                userSelect: 'none'
+              }}>
+                <AISecurityQuiz 
+                  title="Which of the following represents a key use of text generation in the workplace?"
+                  questions={[
+                    {
+                      id: 'A',
+                      text: 'Generating personalised content tailored to specific audiences',
+                      correct: true
+                    },
+                    {
+                      id: 'B',
+                      text: 'Cleaning datasets before analysis',
+                      correct: false
+                    },
+                    {
+                      id: 'C',
+                      text: 'Visualising data trends using graphs',
+                      correct: false
+                    },
+                    {
+                      id: 'D',
+                      text: 'Automating data entry tasks',
+                      correct: false
+                    }
+                  ]}
+                  successMessage="Correct! AI text generation excels at creating customized content for different audiences and purposes."
+                  errorMessage="Incorrect. Think about how AI can help create different types of written content."
+                  onComplete={handleKnowledgeCheckComplete}
+                />
+              </Box>
+            </Paper>
+          ) : (
+            <AISecurityQuiz 
+              title="Which of the following represents a key use of text generation in the workplace?"
+              questions={[
+                {
+                  id: 'A',
+                  text: 'Generating personalised content tailored to specific audiences',
+                  correct: true
+                },
+                {
+                  id: 'B',
+                  text: 'Cleaning datasets before analysis',
+                  correct: false
+                },
+                {
+                  id: 'C',
+                  text: 'Visualising data trends using graphs',
+                  correct: false
+                },
+                {
+                  id: 'D',
+                  text: 'Automating data entry tasks',
+                  correct: false
+                }
+              ]}
+              successMessage="Correct! AI text generation excels at creating customized content for different audiences and purposes."
+              errorMessage="Incorrect. Think about how AI can help create different types of written content."
+              onComplete={handleKnowledgeCheckComplete}
+            />
+          )}
         </Box>
 
       </Container>

@@ -11,7 +11,7 @@ const NavButton = styled(Button)(({ theme }) => ({
   fontSize: '14px',
   letterSpacing: '0.1em',
   color: theme.palette.text.primary,
-  marginLeft: theme.spacing(2),
+  marginRight: theme.spacing(2),
 }));
 
 const Header = () => {
@@ -20,13 +20,18 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        {/* Left side: Logo (clickable) with flexGrow to take available space */}
+        {/* Left side: Navigation links */}
+        <Box>
+          <NavButton onClick={() => navigate('/')}>Home</NavButton>
+          {/* Add additional navigation buttons here if needed */}
+        </Box>
+
+        {/* Right side: Logo (clickable) */}
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
             cursor: 'pointer',
-            flexGrow: 1, // This makes sure the left section takes up space and pushes right section over
           }}
           onClick={() => navigate('/')}
         >
@@ -35,17 +40,10 @@ const Header = () => {
             src={StrykerLogo}
             alt="Stryker Logo"
             sx={{
-              height: '50px',  // We can adjust the height of the logo here
+              height: '50px',
               width: 'auto',
-              mr: 2,
             }}
           />
-        </Box>
-
-        {/* Right side: Navigation links */}
-        <Box>
-          <NavButton onClick={() => navigate('/')}>Home</NavButton>
-          {/* Add additional navigation buttons here if needed */}
         </Box>
       </Toolbar>
     </AppBar>
