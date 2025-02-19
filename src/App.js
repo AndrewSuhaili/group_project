@@ -1,5 +1,5 @@
 import React from 'react';  // Even though it may not be needed with the new JSX transform, it's safe to include.
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Module1 from './components/Module1';
 import Module2 from './components/Module2';
@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Header />
       <Routes>
         <Route path="/" element={<LandingPage />} />
