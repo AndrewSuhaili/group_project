@@ -8,7 +8,7 @@ function LandingPage() {
   const modules = [
     { id: 1, title: 'Module 1: Introduction to AI' },
     { id: 2, title: 'Module 2: Chatbots and Assistants' },
-    { id: 3, title: 'Module 3: Understanding Prompts' },
+    { id: 3, title: 'Module 3: Prompts and chatbot use cases' },
     { id: 4, title: 'Module 4: Responsible AI Use' },
   ];
 

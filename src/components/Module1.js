@@ -1,6 +1,6 @@
 // src/components/Module1.js
 import React, { useContext, useEffect } from 'react';
-import { Container, Typography, Box, Divider } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import QuizQuestion from './QuizQuestion';
 import FlipCard from './FlipCard';
 import DragAndDropMatch from './DragAndDropMatch';
