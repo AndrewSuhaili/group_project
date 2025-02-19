@@ -1,6 +1,6 @@
 // src/components/FlipCard.js
 import React, { useState } from 'react';
-import { Box, Typography, Paper } from '@mui/material';
+import { Typography, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
 const CardContainer = styled('div')(({ theme, sx }) => ({

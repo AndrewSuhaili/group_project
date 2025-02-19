@@ -3,7 +3,6 @@ import { Container, Typography, Box, Paper, Stepper, Step, StepLabel, StepConten
 import FlipCard from './FlipCard';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CaseStudy from './CaseStudy';
-import QuizQuestion from './QuizQuestion';
 import AISecurityQuiz from './AISecurityQuiz';
 import LockIcon from '@mui/icons-material/Lock';
 
@@ -70,29 +69,6 @@ const Module3 = () => {
       prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
     );
   };
-
-  const questions = [
-    {
-      id: 'A',
-      text: 'By making the task clearer for the AI to interpret',
-      correct: true
-    },
-    {
-      id: 'B',
-      text: 'By providing additional data for analysis',
-      correct: false
-    },
-    {
-      id: 'C',
-      text: 'By summarising the output into a concise report',
-      correct: false
-    },
-    {
-      id: 'D',
-      text: 'By automating follow-up tasks',
-      correct: false
-    }
-  ];
 
   const businessCases = [
     {
