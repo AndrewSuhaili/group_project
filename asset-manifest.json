@@ -1,15 +1,44 @@
 {
   "files": {
     "main.css": "/group_project/static/css/main.826b2df5.css",
-    "main.js": "/group_project/static/js/main.2e2c274e.js",
-    "static/js/488.27942ca1.chunk.js": "/group_project/static/js/488.27942ca1.chunk.js",
+    "main.js": "/group_project/static/js/main.4865507d.js",
+    "reactPlayerYouTube.js": "/group_project/static/js/reactPlayerYouTube.6788970a.chunk.js",
+    "reactPlayerSoundCloud.js": "/group_project/static/js/reactPlayerSoundCloud.26696ee6.chunk.js",
+    "reactPlayerVimeo.js": "/group_project/static/js/reactPlayerVimeo.99997368.chunk.js",
+    "reactPlayerMux.js": "/group_project/static/js/reactPlayerMux.102bc45c.chunk.js",
+    "reactPlayerFacebook.js": "/group_project/static/js/reactPlayerFacebook.7ee03d03.chunk.js",
+    "reactPlayerStreamable.js": "/group_project/static/js/reactPlayerStreamable.3bc4dc98.chunk.js",
+    "reactPlayerWistia.js": "/group_project/static/js/reactPlayerWistia.c2d10c6a.chunk.js",
+    "reactPlayerTwitch.js": "/group_project/static/js/reactPlayerTwitch.b38c0354.chunk.js",
+    "reactPlayerDailyMotion.js": "/group_project/static/js/reactPlayerDailyMotion.731eb2ad.chunk.js",
+    "reactPlayerMixcloud.js": "/group_project/static/js/reactPlayerMixcloud.618e4ae0.chunk.js",
+    "reactPlayerVidyard.js": "/group_project/static/js/reactPlayerVidyard.8b3d12fd.chunk.js",
+    "reactPlayerKaltura.js": "/group_project/static/js/reactPlayerKaltura.407536a8.chunk.js",
+    "reactPlayerFilePlayer.js": "/group_project/static/js/reactPlayerFilePlayer.92ddd97d.chunk.js",
+    "reactPlayerPreview.js": "/group_project/static/js/reactPlayerPreview.2a0d2e76.chunk.js",
+    "static/js/488.7c0e1eef.chunk.js": "/group_project/static/js/488.7c0e1eef.chunk.js",
+    "static/media/ChatGPT Recording.mp4": "/group_project/static/media/ChatGPT Recording.de8df87e69db2f185604.mp4",
     "index.html": "/group_project/index.html",
     "main.826b2df5.css.map": "/group_project/static/css/main.826b2df5.css.map",
-    "main.2e2c274e.js.map": "/group_project/static/js/main.2e2c274e.js.map",
-    "488.27942ca1.chunk.js.map": "/group_project/static/js/488.27942ca1.chunk.js.map"
+    "main.4865507d.js.map": "/group_project/static/js/main.4865507d.js.map",
+    "reactPlayerYouTube.6788970a.chunk.js.map": "/group_project/static/js/reactPlayerYouTube.6788970a.chunk.js.map",
+    "reactPlayerSoundCloud.26696ee6.chunk.js.map": "/group_project/static/js/reactPlayerSoundCloud.26696ee6.chunk.js.map",
+    "reactPlayerVimeo.99997368.chunk.js.map": "/group_project/static/js/reactPlayerVimeo.99997368.chunk.js.map",
+    "reactPlayerMux.102bc45c.chunk.js.map": "/group_project/static/js/reactPlayerMux.102bc45c.chunk.js.map",
+    "reactPlayerFacebook.7ee03d03.chunk.js.map": "/group_project/static/js/reactPlayerFacebook.7ee03d03.chunk.js.map",
+    "reactPlayerStreamable.3bc4dc98.chunk.js.map": "/group_project/static/js/reactPlayerStreamable.3bc4dc98.chunk.js.map",
+    "reactPlayerWistia.c2d10c6a.chunk.js.map": "/group_project/static/js/reactPlayerWistia.c2d10c6a.chunk.js.map",
+    "reactPlayerTwitch.b38c0354.chunk.js.map": "/group_project/static/js/reactPlayerTwitch.b38c0354.chunk.js.map",
+    "reactPlayerDailyMotion.731eb2ad.chunk.js.map": "/group_project/static/js/reactPlayerDailyMotion.731eb2ad.chunk.js.map",
+    "reactPlayerMixcloud.618e4ae0.chunk.js.map": "/group_project/static/js/reactPlayerMixcloud.618e4ae0.chunk.js.map",
+    "reactPlayerVidyard.8b3d12fd.chunk.js.map": "/group_project/static/js/reactPlayerVidyard.8b3d12fd.chunk.js.map",
+    "reactPlayerKaltura.407536a8.chunk.js.map": "/group_project/static/js/reactPlayerKaltura.407536a8.chunk.js.map",
+    "reactPlayerFilePlayer.92ddd97d.chunk.js.map": "/group_project/static/js/reactPlayerFilePlayer.92ddd97d.chunk.js.map",
+    "reactPlayerPreview.2a0d2e76.chunk.js.map": "/group_project/static/js/reactPlayerPreview.2a0d2e76.chunk.js.map",
+    "488.7c0e1eef.chunk.js.map": "/group_project/static/js/488.7c0e1eef.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.826b2df5.css",
-    "static/js/main.2e2c274e.js"
+    "static/js/main.4865507d.js"
   ]
 }
