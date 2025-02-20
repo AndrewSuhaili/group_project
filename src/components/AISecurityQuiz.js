@@ -34,9 +34,6 @@ const AISecurityQuiz = ({
     const isFullyCorrect = selectedAnswers.length === correctAnswers.length && 
       selectedAnswers.every(a => correctAnswers.includes(a));
     
-    const isPartiallyCorrect = selectedAnswers.some(a => correctAnswers.includes(a)) &&
-      selectedAnswers.length <= correctAnswers.length;
-    
     if (isFullyCorrect) {
       onComplete();
     }
