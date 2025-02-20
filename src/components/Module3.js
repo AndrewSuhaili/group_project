@@ -7,6 +7,8 @@ import AISecurityQuiz from './AISecurityQuiz';
 import LockIcon from '@mui/icons-material/Lock';
 import ReactPlayer from 'react-player';
 import ChatGPTRecording from '../assets/ChatGPT Recording.mp4';
+import ConversationDemo from '../assets/conversation.mp4';
+
 const Module3 = () => {
   const [expandedSteps, setExpandedSteps] = useState([]);
   const [knowledgeCheckCompleted, setKnowledgeCheckCompleted] = useState(false);
@@ -248,7 +250,39 @@ const Module3 = () => {
 
         <Box sx={{ my: 4 }}>
           <Typography variant="h5" gutterBottom>
-            3.4 Text Generation
+            3.4 Conversational AI Interaction
+          </Typography>
+          <Typography variant="body1" paragraph>
+            AI models can engage in dynamic conversations, allowing users to ask follow-up questions, 
+            seek clarification, and explore topics in depth. This interactive capability makes them 
+            valuable tools for brainstorming, problem-solving, and learning.
+          </Typography>
+          
+          <Typography variant="h6" gutterBottom>
+          Here's an example where someone wants to prepare for a meeting by practicing on the spot questions.
+          They have specified what perspective they want the AI to take (e.g. a leadership team member), uploaded some information about their
+          project/presentation and requested a mock question time.
+          </Typography>
+          
+          <Box sx={{ 
+            maxWidth: '800px', 
+            margin: '20px auto',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            borderRadius: '8px',
+            overflow: 'hidden'
+          }}>
+            <ReactPlayer
+              url={ConversationDemo} // You'll need to import this video asset
+              width="100%"
+              height="auto"
+              controls={true}
+              pip={true}
+            />
+          </Box>
+        </Box>
+        <Box sx={{ my: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            3.5 Text Generation
           </Typography>
           <Typography variant="body1" paragraph>
             AI can generate text for written or verbal communications such as emails, reports, 
