@@ -10,7 +10,6 @@ import ChatGPTRecording from '../assets/ChatGPT Recording.mp4';
 const Module3 = () => {
   const [expandedSteps, setExpandedSteps] = useState([]);
   const [knowledgeCheckCompleted, setKnowledgeCheckCompleted] = useState(false);
-  const [expandedBusinessCases, setExpandedBusinessCases] = useState([]);
   const [expandedTextGenCases, setExpandedTextGenCases] = useState([]);
 
   const promptingTechniques = [
@@ -59,35 +58,11 @@ const Module3 = () => {
     setKnowledgeCheckCompleted(true);
   };
 
-  const handleBusinessCaseClick = (index) => {
-    setExpandedBusinessCases(prev => 
-      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
-    );
-  };
-
   const handleTextGenCaseClick = (index) => {
     setExpandedTextGenCases(prev => 
       prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
     );
   };
-
-  const businessCases = [
-    {
-      title: "Product Marketing Trend Analysis",
-      scenario: "A product marketer uses AI to identify emerging trends by analysing customer feedback data.",
-      prompt: "Analyse this customer feedback data and identify three emerging trends: [insert feedback]"
-    },
-    {
-      title: "Academic Research Support",
-      scenario: "An analyst leverages AI to find supporting evidence for a presentation by scanning academic journals.",
-      prompt: "Search for academic articles supporting this hypothesis and summarise key findings: [insert hypothesis]"
-    },
-    {
-      title: "Executive Report Summarisation",
-      scenario: "A member of the leadership team uses AI to summarise a lengthy report into a concise briefing for stakeholders.",
-      prompt: "Summarise this 50-page report into a one-page executive briefing: [insert report]"
-    }
-  ];
 
   const textGenerationCases = [
     {
@@ -227,7 +202,7 @@ const Module3 = () => {
             sources of data or a wide range of sources.
           </Typography>
           <Typography variant="h6" gutterBottom>
-            Have a look at the following video to see how AI can be used to summarise and research information.
+          Have a look at the following video to see how AI can be used to summarise and digest a large report using different prompting techniques.
           </Typography>
           <Box sx={{ maxWidth: '800px', margin: '20px auto' }}>
             <ReactPlayer
