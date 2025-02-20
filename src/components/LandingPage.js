@@ -109,7 +109,7 @@ function LandingPage() {
                     variant="h6" 
                     align="center"
                     sx={{ 
-                      fontSize: '1.5rem',
+                      fontSize: '1.45rem',
                       lineHeight: 1.4,
                       fontWeight: 500,
                       transition: 'color 0.3s ease-in-out',
