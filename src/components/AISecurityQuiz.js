@@ -14,7 +14,7 @@ const AISecurityQuiz = ({
   title, 
   questions,
   successMessage,
-  errorMessage
+  errorMessage 
 }) => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [showResult, setShowResult] = useState(false);
