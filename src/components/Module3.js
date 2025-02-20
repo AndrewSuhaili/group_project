@@ -5,7 +5,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CaseStudy from './CaseStudy';
 import AISecurityQuiz from './AISecurityQuiz';
 import LockIcon from '@mui/icons-material/Lock';
-
+import ReactPlayer from 'react-player';
+import ChatGPTRecording from '../assets/ChatGPT Recording.mp4';
 const Module3 = () => {
   const [expandedSteps, setExpandedSteps] = useState([]);
   const [knowledgeCheckCompleted, setKnowledgeCheckCompleted] = useState(false);
@@ -225,64 +226,18 @@ const Module3 = () => {
             AI can locate relevant resources quickly and extract key insights from large individual 
             sources of data or a wide range of sources.
           </Typography>
-          
-          <Stepper orientation="vertical" nonLinear>
-            {businessCases.map((useCase, index) => (
-              <Step key={index} active={expandedBusinessCases.includes(index)}>
-                <StepLabel
-                  onClick={() => handleBusinessCaseClick(index)}
-                  sx={{ cursor: 'pointer' }}
-                  StepIconComponent={() => (
-                    <IconButton
-                      size="small"
-                      sx={{
-                        transform: expandedBusinessCases.includes(index) ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.3s'
-                      }}
-                    >
-                      <ExpandMoreIcon />
-                    </IconButton>
-                  )}
-                >
-                  <Typography variant="h6">{useCase.title}</Typography>
-                </StepLabel>
-                {expandedBusinessCases.includes(index) && (
-                  <StepContent TransitionProps={{ unmountOnExit: true }}>
-                    <Box sx={{ my: 2 }}>
-                      <Typography variant="body1" paragraph>
-                        {useCase.scenario}
-                      </Typography>
-                      <Paper 
-                        elevation={2} 
-                        sx={{ 
-                          p: 2, 
-                          bgcolor: 'grey.50',
-                          borderLeft: 4,
-                          borderColor: 'primary.main'
-                        }}
-                      >
-                        <Typography variant="subtitle2" gutterBottom color="primary">
-                          Example Prompt:
-                        </Typography>
-                        <Typography 
-                          variant="body2" 
-                          sx={{ 
-                            whiteSpace: 'pre-wrap', 
-                            fontFamily: 'monospace',
-                            color: 'text.secondary',
-                            fontSize: '1rem'
-                          }}
-                        >
-                          {useCase.prompt}
-                        </Typography>
-                      </Paper>
-                    </Box>
-                    <Divider sx={{ my: 2 }} />
-                  </StepContent>
-                )}
-              </Step>
-            ))}
-          </Stepper>
+          <Typography variant="h6" gutterBottom>
+            Have a look at the following video to see how AI can be used to summarise and research information.
+          </Typography>
+          <Box sx={{ maxWidth: '800px', margin: '20px auto' }}>
+            <ReactPlayer
+              url={ChatGPTRecording}
+              width="100%"
+              height="auto"
+              controls={true}
+              pip={true}
+            />
+          </Box>
         </Box>
 
         <Box sx={{ mt: 4 }}>          
