@@ -31,10 +31,13 @@ const AISecurityQuiz = ({
   const handleSubmit = () => {
     setShowResult(true);
     const correctAnswers = questions.filter(q => q.correct).map(q => q.id);
-    const isCorrect = selectedAnswers.length === correctAnswers.length && 
+    const isFullyCorrect = selectedAnswers.length === correctAnswers.length && 
       selectedAnswers.every(a => correctAnswers.includes(a));
     
-    if (isCorrect) {
+    const isPartiallyCorrect = selectedAnswers.some(a => correctAnswers.includes(a)) &&
+      selectedAnswers.length <= correctAnswers.length;
+    
+    if (isFullyCorrect) {
       onComplete();
     }
   };
@@ -42,6 +45,23 @@ const AISecurityQuiz = ({
   const handleRetry = () => {
     setSelectedAnswers([]);
     setShowResult(false);
+  };
+
+  const getResultStatus = () => {
+    const correctAnswers = questions.filter(q => q.correct).map(q => q.id);
+    const isFullyCorrect = selectedAnswers.length === correctAnswers.length && 
+      selectedAnswers.every(a => correctAnswers.includes(a));
+    const isPartiallyCorrect = selectedAnswers.some(a => correctAnswers.includes(a)) &&
+      selectedAnswers.length <= correctAnswers.length;
+
+    return {
+      severity: isFullyCorrect ? "success" : isPartiallyCorrect ? "warning" : "error",
+      message: isFullyCorrect 
+        ? (successMessage || "Correct!") 
+        : isPartiallyCorrect 
+          ? "Partially correct! Keep going..." 
+          : (errorMessage || "Incorrect. Please try again.")
+    };
   };
 
   return (
@@ -87,16 +107,11 @@ const AISecurityQuiz = ({
 
       {showResult && (
         <Box sx={{ mt: 2 }}>
-          {selectedAnswers.length === questions.filter(q => q.correct).length && 
-           selectedAnswers.every(a => questions.find(q => q.id === a)?.correct) ? (
-            <Alert severity="success">
-              {successMessage || "Correct!"}
+          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            <Alert severity={getResultStatus().severity} sx={{ flex: 1 }}>
+              {getResultStatus().message}
             </Alert>
-          ) : (
-            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              <Alert severity="error" sx={{ flex: 1 }}>
-                {errorMessage || "Incorrect. Please try again."}
-              </Alert>
+            {getResultStatus().severity !== "success" && (
               <Button
                 variant="contained"
                 color="primary"
@@ -104,8 +119,8 @@ const AISecurityQuiz = ({
               >
                 Try Again
               </Button>
-            </Box>
-          )}
+            )}
+          </Box>
         </Box>
       )}
     </Box>
