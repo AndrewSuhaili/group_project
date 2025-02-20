@@ -8,16 +8,13 @@ import {
   StepContent,
   Card,
   CardContent,
-  IconButton,
   Collapse,
   Fade,
   Chip,
   Stack,
-  Divider,
   Alert,
   Button
 } from '@mui/material';
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';

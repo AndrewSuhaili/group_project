@@ -71,29 +71,6 @@ const Module3 = () => {
     );
   };
 
-  const questions = [
-    {
-      id: 'A',
-      text: 'By making the task clearer for the AI to interpret',
-      correct: true
-    },
-    {
-      id: 'B',
-      text: 'By providing additional data for analysis',
-      correct: false
-    },
-    {
-      id: 'C',
-      text: 'By summarising the output into a concise report',
-      correct: false
-    },
-    {
-      id: 'D',
-      text: 'By automating follow-up tasks',
-      correct: false
-    }
-  ];
-
   const businessCases = [
     {
       title: "Product Marketing Trend Analysis",

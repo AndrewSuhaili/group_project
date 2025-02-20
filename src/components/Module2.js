@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container, Typography, Box, Tabs, Tab, Paper } from '@mui/material';
-import ProgressBar from './ProgressBar';
 import FlipCard from './FlipCard';
 import ToolSelectionMultiQuestion from './ToolSelectionMultiQuestion';
 import ToolComparisonDetails from './ToolComparisonDetails';

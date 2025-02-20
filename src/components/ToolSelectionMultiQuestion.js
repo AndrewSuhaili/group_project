@@ -26,12 +26,6 @@ const ToolSelectionMultiQuestion = () => {
 
   const handleReveal = () => {
     setRevealed(true);
-    // Check if selected array matches the correct answers (order doesn't matter)
-    const sortedSelected = [...selected].sort();
-    const sortedCorrect = [...correctAnswers].sort();
-    const isCorrect =
-      sortedSelected.length === sortedCorrect.length &&
-      sortedSelected.every((value, index) => value === sortedCorrect[index]);
   };
 
   return (
