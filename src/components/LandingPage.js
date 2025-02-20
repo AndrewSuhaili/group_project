@@ -68,14 +68,24 @@ function LandingPage() {
               elevation={3} 
               sx={{ 
                 borderRadius: 3,
-                minHeight: '220px',
+                height: '220px',
                 display: 'flex',
                 background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%)',
                 transition: 'all 0.3s ease-in-out',
+                position: 'relative',
                 '&:hover': {
                   transform: 'translateY(-5px)',
                   boxShadow: '0 12px 20px rgba(0,0,0,0.1)',
                   background: 'linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%)'
+                },
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: -10,
+                  left: 0,
+                  right: 0,
+                  height: '10px',
+                  background: 'transparent'
                 }
               }}
             >
@@ -94,7 +104,7 @@ function LandingPage() {
                   }
                 }}
               >
-                <CardContent>
+                <CardContent sx={{ p: 0 }}>
                   <Typography 
                     variant="h6" 
                     align="center"
