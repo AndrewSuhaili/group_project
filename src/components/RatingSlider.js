@@ -5,7 +5,7 @@ import { Slider, Box } from '@mui/material';
 const RatingSlider = ({ initialValue = 50, onChange }) => {
   const [value, setValue] = useState(initialValue);
 
-  const handleSliderChange = (event, newValue) => {
+  const handleSliderChange = (newValue) => {
     setValue(newValue);
     if (onChange) {
       onChange(newValue);
