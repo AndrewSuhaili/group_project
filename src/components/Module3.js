@@ -16,7 +16,7 @@ const Module3 = () => {
 
   const promptingTechniques = [
     {
-      title: "1. Set Clear Objectives",
+      title: "1. Set Clear Objectives", 
       explanation: "Every good prompt has a clear objective or purpose. When you give ChatGPT a prompt, make sure you know what you want to get out of the response. Are you looking for factual information, creative writing, a summary, or advice?",
       example: "Instead of: \"Tell me about project management\"\n\nBetter: \"Explain the 5 key phases of project management according to PMI standards, with one specific best practice for each phase.\""
     },
